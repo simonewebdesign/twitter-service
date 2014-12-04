@@ -66,14 +66,26 @@ class TweetsController < ApplicationController
     data = JSON.parse(response.body)
     Kernel.ap data
 
+    redirect_to tweets_path and return unless response.success?
+
     if !data.empty?
       data.each {|t|
         tweet = Tweet.new(
           message: t['message'],
           sentiment: t['sentiment'],
-          remote_id: t['id'],
-          user_id: 1
+          remote_id: t['id']
         )
+
+        user = User.find_by(handle: t['user_handle'])
+
+        if user.nil?
+          user = User.create!(
+            handle: t['user_handle'],
+            followers: t['followers']
+          )
+        end
+
+        tweet.user = user
         tweet.save!
       }
     end

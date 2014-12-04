@@ -24,7 +24,7 @@
 
         <td><%= tweet.sentiment %></td>
         <td><%= tweet.remote_id %></td>
-        <td><%= tweet.user %></td>
+        <td><%= tweet.user.handle %></td>
         <td><%= link_to 'Show', tweet %></td>
         <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
         <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
