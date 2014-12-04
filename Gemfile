@@ -41,3 +41,7 @@ gem 'awesome_print'
 
 # Use Typhoeus for HTTP requests
 gem 'typhoeus'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
