@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Twitterservice</title>
+  <title>Twitter Service</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <main role="main">
+    <!-- commented out because apparently Rails already provides a default view 
+    for rendering flash notice -->
+    <%# render 'layouts/messages' %>
+    <%= yield %>
+  </main>
 </body>
 </html>

@@ -1,5 +1,9 @@
+require './app/jobs/tweets_fetch_job'
+
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+
+  rescue_from TweetsFetchJobError::InvalidResponse, with: :show_error
 
   # GET /tweets
   # GET /tweets.json
@@ -68,36 +72,16 @@ class TweetsController < ApplicationController
   end
 
   def tweets_from_api
-    response = Typhoeus.get('http://adaptive-test-api.herokuapp.com/tweets.json')
-    data = JSON.parse(response.body)
-    Kernel.ap data
-
-    redirect_to tweets_path and return unless response.success?
-
-    if !data.empty?
-      data.each {|t|
-        tweet = Tweet.new(
-          message: t['message'],
-          sentiment: t['sentiment'],
-          remote_id: t['id']
-        )
-
-        user = User.find_by(handle: t['user_handle'])
-
-        if user.nil?
-          user = User.create!(
-            handle: t['user_handle'],
-            followers: t['followers']
-          )
-        end
-
-        tweet.user = user
-        tweet.save!
-      }
-    end
+    TweetsFetchJob.perform_later
 
     redirect_to tweets_path
   end
+
+  protected
+
+    def show_error(exception)
+      redirect_to tweets_path, notice: exception.message
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.
