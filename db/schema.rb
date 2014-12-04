@@ -11,30 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204115554) do
+ActiveRecord::Schema.define(version: 20141204115831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "fuubars", force: true do |t|
-    t.string   "foo",        limit: 255
-    t.string   "bar",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "fuuubars", force: true do |t|
-    t.string   "foo"
-    t.string   "bar"
+  create_table "tweets", force: true do |t|
+    t.string   "message"
+    t.float    "sentiment"
+    t.integer  "remote_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "handle"
+    t.string   "handle",     limit: 50
     t.integer  "followers"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
+  add_foreign_key "tweets", "users"
 end
