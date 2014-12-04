@@ -5,10 +5,11 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
       <th>Message</th>
       <th>Sentiment</th>
       <th>Remote</th>
-      <th>User</th>
+      <th>Seen</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +17,8 @@
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
+        <td><%= tweet.user.handle %></td>
+
         <% if highlighted?(tweet.message) %>
         <td class="highlighted"><%= tweet.message %></td>
         <% else %>
@@ -24,7 +27,8 @@
 
         <td><%= tweet.sentiment %></td>
         <td><%= tweet.remote_id %></td>
-        <td><%= tweet.user.handle %></td>
+        <td><%= pluralize(tweet.counter, 'time') %></td>
+
         <td><%= link_to 'Show', tweet %></td>
         <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
         <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>

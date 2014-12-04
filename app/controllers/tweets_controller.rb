@@ -4,7 +4,13 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all
+    # Retrieve count of unique tweets
+    @tweets_count = Tweet.unscoped.group(:remote_id).count(:id)
+
+    # Set counter and remove duplicates
+    @tweets = Tweet.all.each {|t|
+      t.counter = @tweets_count[t.remote_id]
+    }.uniq(&:remote_id)
   end
 
   # GET /tweets/1
