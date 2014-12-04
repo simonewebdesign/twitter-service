@@ -8,7 +8,6 @@
       <th>User</th>
       <th>Message</th>
       <th>Sentiment</th>
-      <th>Remote</th>
       <th>Seen</th>
       <th colspan="3"></th>
     </tr>
@@ -26,7 +25,6 @@
         <% end %>
 
         <td><%= tweet.sentiment %></td>
-        <td><%= tweet.remote_id %></td>
         <td><%= pluralize(tweet.counter, 'time') %></td>
 
         <td><%= link_to 'Show', tweet %></td>

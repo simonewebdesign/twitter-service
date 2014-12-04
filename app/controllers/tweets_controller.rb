@@ -95,6 +95,8 @@ class TweetsController < ApplicationController
         tweet.save!
       }
     end
+
+    redirect_to tweets_path
   end
 
   private
