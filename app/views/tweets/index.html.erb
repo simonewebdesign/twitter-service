@@ -16,7 +16,12 @@
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
+        <% if highlighted?(tweet.message) %>
+        <td class="highlighted"><%= tweet.message %></td>
+        <% else %>
         <td><%= tweet.message %></td>
+        <% end %>
+
         <td><%= tweet.sentiment %></td>
         <td><%= tweet.remote_id %></td>
         <td><%= tweet.user %></td>
