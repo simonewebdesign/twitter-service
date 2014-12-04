@@ -61,6 +61,24 @@ class TweetsController < ApplicationController
     end
   end
 
+  def tweets_from_api
+    response = Typhoeus.get('http://adaptive-test-api.herokuapp.com/tweets.json')
+    data = JSON.parse(response.body)
+    Kernel.ap data
+
+    if !data.empty?
+      data.each {|t|
+        tweet = Tweet.new(
+          message: t['message'],
+          sentiment: t['sentiment'],
+          remote_id: t['id'],
+          user_id: 1
+        )
+        tweet.save!
+      }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
