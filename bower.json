@@ -1,0 +1,29 @@
+{
+  "name": "twitter-service",
+  "version": "0.1.0",
+  "homepage": "https://github.com/simonewebdesign/twitter-service",
+  "authors": [
+    "Simone Vittori <hello@simonewebdesign.it>"
+  ],
+  "description": "Rails app that fetches a RESTful API using ActiveJob",
+  "main": "app/assets/stylesheets/application.css",
+  "keywords": [
+    "twitter",
+    "service",
+    "api",
+    "rest",
+    "rails"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "~3.0.0"
+  }
+}
