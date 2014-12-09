@@ -12,6 +12,8 @@
   box-shadow: 0 1px 0 white, inset 0 1px 0 white;
   padding: 10px;
   overflow: hidden;
+  max-width: 532px;
+  min-height: 77px;
 
   .media {
     display: block;
@@ -59,5 +61,6 @@
     position: absolute;
     bottom: 5px;
     right: 10px;
+    z-index: -1; // so will stay below the text
   }
 }
