@@ -10,6 +10,14 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    # Retrieve count of unique tweets
+    @tweets_count = Tweet.unscoped.group(:remote_id).count(:id)
+
+    # Set counter and remove duplicates
+    # TODO: slightly different than Tweet#index; refactor
+    @tweets = @user.tweets.each {|t|
+      t.counter = @tweets_count[t.remote_id]
+    }.uniq(&:remote_id)
   end
 
   # GET /users/new
