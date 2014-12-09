@@ -1,42 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Tweets</h1>
+<h1>Tweets</h1>
+<%= render @tweets %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Message</th>
-      <th>Sentiment</th>
-      <th>Seen</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><%= tweet.user.handle %></td>
-
-        <% if highlighted?(tweet.message) %>
-        <td class="highlighted"><%= tweet.message %></td>
-        <% else %>
-        <td><%= tweet.message %></td>
-        <% end %>
-
-        <td><%= tweet.sentiment %></td>
-        <td><%= pluralize(tweet.counter, 'time') %></td>
-
-        <td><%= link_to 'Show', tweet %></td>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Tweet', new_tweet_path %>
-
-<%= link_to 'Fetch more messages', tweets_from_api_path %>
+<%= link_to 'Fetch more messages', tweets_from_api_path, class: 'button' %>

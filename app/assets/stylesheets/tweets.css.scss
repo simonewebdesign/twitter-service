@@ -5,3 +5,52 @@
 .highlighted {
   color: red;
 }
+
+.tweet {
+  border: 1px solid #eee;
+  box-shadow: 0 1px 0 white, inset 0 1px 0 white;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.tweet-media {
+  display: block;
+  width: 10%;
+  float: left;
+}
+
+.tweet-body {
+  float: left;
+  padding-left: 10px;
+  width: 90%;
+}
+
+.tweet-media > img {
+  width: 100%;
+  border-radius: 2px;
+}
+
+.tweet-heading {
+  position: relative;
+}
+
+.tweet-user {
+  color: inherit;
+}
+
+.tweet-time {
+  font-size: 0.917em; /* 11px */
+  color: #ccc;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tweet-content > p {
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.tweet-content a {
+  color: #6e7e8a;
+}
