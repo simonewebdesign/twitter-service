@@ -1,15 +1,15 @@
 <div class="tweet">
-  <a href="#" class="tweet-media">
+  <a href="#" class="media">
     <img src="<%= image_path('horse-js_400x400.png') %>" alt="<%= tweet.user.handle %>'s avatar" />
   </a>
-  <div class="tweet-body">
-    <div class="tweet-heading">
-      <a href="<%= user_path(tweet.user) %>" class="tweet-user">
+  <div class="body">
+    <div class="heading">
+      <a href="<%= user_path(tweet.user) %>" class="user">
         <strong><%= tweet.user.handle %></strong>
       </a>
-      <time class="tweet-time">seen <%= pluralize(tweet.counter, 'time') %></time>
+      <time class="time">seen <%= pluralize(tweet.counter, 'time') %></time>
     </div>
-    <div class="tweet-content">
+    <div class="content">
       <% if highlighted?(tweet.message) %>
       <p class="highlighted"><%= tweet.message %></p>
       <% else %>
