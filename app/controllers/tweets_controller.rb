@@ -12,7 +12,7 @@ class TweetsController < ApplicationController
     @tweets_count = Tweet.unscoped.group(:remote_id).count(:id)
 
     # Set counter and remove duplicates
-    @tweets = Tweet.all.each {|t|
+    @tweets = Tweet.includes(:user).each {|t|
       t.counter = @tweets_count[t.remote_id]
     }.uniq(&:remote_id)
   end
