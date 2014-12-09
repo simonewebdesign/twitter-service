@@ -1,13 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Handle:</strong>
-  <%= @user.handle %>
-</p>
+<h1><%= @user.handle %>'s tweets</h1>
 
-<p>
-  <strong>Followers:</strong>
-  <%= @user.followers %>
-</p>
+<%= render @user.tweets %>
 
-<%= link_to 'Back', tweets_path %>
+<%= link_to 'Back to all tweets', tweets_path %>
