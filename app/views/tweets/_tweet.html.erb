@@ -15,7 +15,9 @@
       <% else %>
       <p><%= tweet.message %></p>
       <% end %>
-      (sentiment: <%= tweet.sentiment %>)
+    </div>
+    <div class="sentiment">
+      <%= sentiment_image_tag(tweet.sentiment) %>
     </div>
   </div>
 </div>
